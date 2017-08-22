@@ -11,15 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  */
 @Controller
-public class HomePageController {
+public class LoginPageController {
 
-	@GetMapping({ "/", "/ui" })
+	@GetMapping("/login.htm")
 	public String homepage() {
-		return "redirect:/ui/index.htm";
+		return "login";
 	}
 
-	@GetMapping("/ui/index.htm")
-	public String index() {
-		return "index";
-	}
 }

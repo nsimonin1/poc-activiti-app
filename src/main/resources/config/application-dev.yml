@@ -26,8 +26,8 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:file:${user.home}/h2db/db/mngtjob;DB_CLOSE_DELAY=-1
-        username: mngtJob
+        url: jdbc:h2:file:${user.home}/h2db/db/activitidb;DB_CLOSE_DELAY=-1
+        username: root
         password:
     h2:
         console:
