@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+	<changeSet author="Simon Pascal" id="activitiDB">
+		<!-- H2 database schema -->
+		<sqlFile dbms="h2" encoding="utf8" endDelimiter=";"
+			path="../activiti/h2/activiti.h2.create.engine.sql" relativeToChangelogFile="true"
+			splitStatements="true" stripComments="true" />
+		<sqlFile dbms="h2" encoding="utf8" endDelimiter=";"
+			path="../activiti/h2/activiti.h2.create.history.sql" relativeToChangelogFile="true"
+			splitStatements="true" stripComments="true" />
+		<sqlFile dbms="h2" encoding="utf8" endDelimiter=";"
+			path="../activiti/h2/activiti.h2.create.identity.sql" relativeToChangelogFile="true"
+			splitStatements="true" stripComments="true" />
+			
+		<!-- mysql database schema -->
+		<sqlFile dbms="mysql" encoding="utf8" endDelimiter=";"
+			path="../activiti/mysql/activiti.mysql55.create.engine.sql" relativeToChangelogFile="true"
+			splitStatements="true" stripComments="true" />
+		<sqlFile dbms="h2" encoding="utf8" endDelimiter=";"
+			path="../activiti/mysql/activiti.mysql55.create.history.sql" relativeToChangelogFile="true"
+			splitStatements="true" stripComments="true" />
+		<sqlFile dbms="h2" encoding="utf8" endDelimiter=";"
+			path="../activiti/mysql/activiti.mysql.create.identity.sql" relativeToChangelogFile="true"
+			splitStatements="true" stripComments="true" />
+		<!-- mysql database schema -->
+		<sqlFile dbms="MySQL" encoding="utf8" endDelimiter=";"
+			path="../activiti/mysql/activiti.mysql55.create.engine.sql" relativeToChangelogFile="true"
+			splitStatements="true" stripComments="true" />
+		<sqlFile dbms="MySQL" encoding="utf8" endDelimiter=";"
+			path="../activiti/mysql/activiti.mysql55.create.history.sql" relativeToChangelogFile="true"
+			splitStatements="true" stripComments="true" />
+		<sqlFile dbms="MySQL" encoding="utf8" endDelimiter=";"
+			path="../activiti/mysql/activiti.mysql.create.identity.sql" relativeToChangelogFile="true"
+			splitStatements="true" stripComments="true" />
+			
+			
+		<!-- mysql database schema -->
+		<sqlFile dbms="PostgreSQL" encoding="utf8" endDelimiter=";"
+			path="../activiti/postgressql/activiti.postgres.create.engine.sql" relativeToChangelogFile="true"
+			splitStatements="true" stripComments="true" />
+		<sqlFile dbms="PostgreSQL" encoding="utf8" endDelimiter=";"
+			path="../activiti/postgressql/activiti.postgres.create.history.sql" relativeToChangelogFile="true"
+			splitStatements="true" stripComments="true" />
+		<sqlFile dbms="PostgreSQL" encoding="utf8" endDelimiter=";"
+			path="../activiti/postgressql/activiti.postgres.create.identity.sql" relativeToChangelogFile="true"
+			splitStatements="true" stripComments="true" />
+	</changeSet>
+
+
+
+
+</databaseChangeLog>
