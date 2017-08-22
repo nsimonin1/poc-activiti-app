@@ -10,8 +10,7 @@
 		<relativePath />
 	</parent>
 
-	<groupId>net.freelancertech.vaccation</groupId>
-	<artifactId>mngt-job</artifactId>
+	<groupId>net.freelancertech.activiti</groupId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>Mngt Job</name>
@@ -891,4 +890,5 @@
 			</dependencies>
 		</profile>
 	</profiles>
+	<artifactId>activiti-app</artifactId>
 </project>
