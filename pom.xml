@@ -6,14 +6,15 @@
 	<parent>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<groupId>org.springframework.boot</groupId>
-		<version>1.5.4.RELEASE</version>
+		<version>1.5.6.RELEASE</version>
 		<relativePath />
 	</parent>
 
-	<groupId>net.freelancertech.activiti</groupId>
+	<groupId>net.freelancertech.vaccation</groupId>
+	<artifactId>activiti-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Mngt Job</name>
+	<name>Activiti Application</name>
 
 	<properties>
 		<argLine>-Djava.security.egd=file:/dev/./urandom -Xmx256m</argLine>
@@ -29,15 +30,15 @@
 		<jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
 		<java.version>1.8</java.version>
 		<jcache.version>1.0.0</jcache.version>
-		<jhipster.server.version>1.1.8</jhipster.server.version>
+		<jhipster.server.version>1.1.9</jhipster.server.version>
 		<liquibase-hibernate5.version>3.6</liquibase-hibernate5.version>
 		<liquibase-slf4j.version>2.0.0</liquibase-slf4j.version>
-		<logstash-logback-encoder.version>4.9</logstash-logback-encoder.version>
+		<logstash-logback-encoder.version>4.11</logstash-logback-encoder.version>
 		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
 		<mapstruct.version>1.1.0.Final</mapstruct.version>
-		<maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
+		<maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
 		<maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
-		<maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+		<maven-resources-plugin.version>3.0.1</maven-resources-plugin.version>
 		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
@@ -98,58 +99,16 @@
 		<activiti.version>6.0.0</activiti.version>
 		<thymeleaf.version>3.0.7.RELEASE</thymeleaf.version>
 		<thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>
+		<font-awesome.version>4.7.0</font-awesome.version>
+		<bootstrap.version>4.0.0-beta</bootstrap.version>
+		<jquery.version>3.2.1</jquery.version>
+		<popper.js.version>1.11.1</popper.js.version>
+		<datatables.version>1.10.15</datatables.version>
+		<jquery-easing.version>1.3-2</jquery-easing.version>
 	</properties>
 
 
 	<dependencies>
-		<dependency>
-			<groupId>org.activiti</groupId>
-			<artifactId>spring-boot-starter-basic</artifactId>
-			<version>5.17.0</version>
-		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>org.activiti</groupId> -->
-		<!-- <artifactId>activiti-spring-boot-starter-jpa</artifactId> -->
-		<!-- <version>5.17.0</version> -->
-		<!-- </dependency> -->
-
-		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>4.0.0-beta</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>jquery</artifactId>
-			<version>3.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars.npm</groupId>
-			<artifactId>popper.js</artifactId>
-			<version>1.11.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>datatables</artifactId>
-			<version>1.10.15</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>jquery-easing</artifactId>
-			<version>1.3-2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>font-awesome</artifactId>
-			<version>4.7.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>webjars-locator</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>io.github.jhipster</groupId>
 			<artifactId>jhipster</artifactId>
@@ -395,20 +354,6 @@
 			<groupId>net.logstash.logback</groupId>
 			<artifactId>logstash-logback-encoder</artifactId>
 			<version>${logstash-logback-encoder.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>ch.qos.logback</groupId>
-					<artifactId>logback-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>ch.qos.logback</groupId>
-					<artifactId>logback-classic</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>ch.qos.logback</groupId>
-					<artifactId>logback-access</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -424,6 +369,53 @@
 			<artifactId>spring-security-messaging</artifactId>
 		</dependency>
 		<!-- jhipster-needle-maven-add-dependency -->
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>spring-boot-starter-basic</artifactId>
+			<version>5.17.0</version>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.activiti</groupId> -->
+		<!-- <artifactId>activiti-spring-boot-starter-jpa</artifactId> -->
+		<!-- <version>5.17.0</version> -->
+		<!-- </dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>${bootstrap.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>${jquery.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.npm</groupId>
+			<artifactId>popper.js</artifactId>
+			<version>${popper.js.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>datatables</artifactId>
+			<version>${datatables.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery-easing</artifactId>
+			<version>${jquery-easing.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>font-awesome</artifactId>
+			<version>${font-awesome.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<defaultGoal>spring-boot:run</defaultGoal>
@@ -439,6 +431,13 @@
 							<artifactId>mapstruct-processor</artifactId>
 							<version>${mapstruct.version}</version>
 						</path>
+						<!-- For JPA static metamodel generation -->
+						<path>
+							<groupId>org.hibernate</groupId>
+							<artifactId>hibernate-jpamodelgen</artifactId>
+							<version>${hibernate.version}</version>
+						</path>
+
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
@@ -890,5 +889,4 @@
 			</dependencies>
 		</profile>
 	</profiles>
-	<artifactId>activiti-app</artifactId>
 </project>
