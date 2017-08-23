@@ -23,7 +23,7 @@ management:
             enabled: false # When using the MailService, configure an SMTP server and set this to true
 spring:
     application:
-        name: mngtJob
+        name: Activiti-App
     profiles:
         # The commented value for `active` can be replaced with valid Spring profiles to load.
         # Otherwise, it will be filled in by maven when building the WAR file
@@ -83,8 +83,8 @@ jhipster:
         from: mngtJob@localhost
     swagger:
         default-include-pattern: /api/.*
-        title: mngtJob API
-        description: mngtJob API documentation
+        title: Activiti App API
+        description: Activiti App API documentation
         version: 0.0.1
         terms-of-service-url:
         contact-name:

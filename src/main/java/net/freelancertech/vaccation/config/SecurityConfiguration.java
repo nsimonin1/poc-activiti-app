@@ -3,6 +3,7 @@ package net.freelancertech.vaccation.config;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.BeanInitializationException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,12 +18,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import org.springframework.security.web.authentication.RememberMeServices;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.filter.CorsFilter;
 
 import io.github.jhipster.config.JHipsterProperties;
-import io.github.jhipster.security.AjaxAuthenticationFailureHandler;
-import io.github.jhipster.security.AjaxAuthenticationSuccessHandler;
-import io.github.jhipster.security.AjaxLogoutSuccessHandler;
 import io.github.jhipster.security.Http401UnauthorizedEntryPoint;
 import net.freelancertech.vaccation.security.AuthoritiesConstants;
 
@@ -42,8 +42,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private final CorsFilter corsFilter;
 
 	public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder,
-			UserDetailsService userDetailsService, JHipsterProperties jHipsterProperties,
-			RememberMeServices rememberMeServices, CorsFilter corsFilter) {
+			@Qualifier("domainUserDetailsService") UserDetailsService userDetailsService,
+			JHipsterProperties jHipsterProperties, RememberMeServices rememberMeServices, CorsFilter corsFilter) {
 
 		this.authenticationManagerBuilder = authenticationManagerBuilder;
 		this.userDetailsService = userDetailsService;
@@ -59,21 +59,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		} catch (final Exception e) {
 			throw new BeanInitializationException("Security configuration failed", e);
 		}
-	}
-
-	@Bean
-	public AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler() {
-		return new AjaxAuthenticationSuccessHandler();
-	}
-
-	@Bean
-	public AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler() {
-		return new AjaxAuthenticationFailureHandler();
-	}
-
-	@Bean
-	public AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler() {
-		return new AjaxLogoutSuccessHandler();
 	}
 
 	@Bean
@@ -96,24 +81,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-				/*
-				 * .csrf() .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-				 * .and() .addFilterBefore(corsFilter,
-				 * UsernamePasswordAuthenticationFilter.class) .exceptionHandling()
-				 * .authenticationEntryPoint(http401UnauthorizedEntryPoint()).and()
-				 */
+
+				.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
+				.addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class).exceptionHandling()
+				.authenticationEntryPoint(http401UnauthorizedEntryPoint()).and()
+
 				.rememberMe().rememberMeServices(rememberMeServices).rememberMeParameter("remember-me")
 				.key(jHipsterProperties.getSecurity().getRememberMe().getKey()).and().formLogin()
 				.loginPage("/login.htm").permitAll().loginProcessingUrl("/login.htm")
-				// .successHandler(ajaxAuthenticationSuccessHandler())
-				// .failureHandler(ajaxAuthenticationFailureHandler())
+
 				.usernameParameter("j_username").passwordParameter("j_password").permitAll().and().logout()
 				.logoutUrl("/ui/logout.htm")
-				// .logoutSuccessHandler(ajaxLogoutSuccessHandler())
+
 				.permitAll().invalidateHttpSession(true)
-				// .addLogoutHandler(logoutHandler)
-				// .and().headers().frameOptions().disable()
-				// .deleteCookies(cookieNamesToClear)
+
 				.and().authorizeRequests().antMatchers("/api/register").permitAll().antMatchers("/api/activate")
 				.permitAll().antMatchers("/api/authenticate").permitAll()
 				.antMatchers("/api/account/reset_password/init").permitAll()
